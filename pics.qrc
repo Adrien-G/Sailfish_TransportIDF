@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Pics/Plan-Metro.png</file>
+    </qresource>
+</RCC>
