@@ -1,6 +1,6 @@
 # Sailfish_TransportIDF
 
-A small application for getting Next departures of transports in paris
+A small application for getting Next departures of transports in paris.
 
 ### Functionnality
 
@@ -17,4 +17,4 @@ For having real-time data, i use API of pierre grimaud : https://github.com/pgri
 
 ### Installing
 
-actually no installation is furnished, but you can download sailfish SDK and compile it to your Sailfish X phone
+for now no installation is furnished because the app' is not finished, but you can download sailfish SDK and compile it to your Sailfish X phone
