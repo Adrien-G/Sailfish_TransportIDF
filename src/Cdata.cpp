@@ -1,9 +1,20 @@
+/***************************************************************************\
+|                                                                           |
+|   Author : Adrien-G.                                                      |
+|   date   : 11/06/2018                                                     |
+|                                                                           |
+|   This class connect to internet and grab RATP real-time schedule data    |
+|   For more information about the data grabbed please see work from        |
+|   pierre Grimaud here : https://github.com/pgrimaud/horaires-ratp-api     |
+|                                                                           |
+\***************************************************************************/
 #include "Cdata.h"
 
 Cdata::Cdata(QObject *parent) : QObject(parent){}
 void Cdata::setTitle(QString title,int index){ this->title[index] = title; }
 QString Cdata::getTitle(int index){ return title[index]; }
 
+//*** fill information for having the good link ***//
 void Cdata::setLinkInformation(QString data, QString newValue){
     if(data == "type")
         this->type = newValue;
@@ -17,6 +28,7 @@ void Cdata::setLinkInformation(QString data, QString newValue){
     //qDebug() << "station : " + this->station;
 }
 
+//*** ask for the good url (index specified in parameter) ***//
 void Cdata::requestData(int index){
     this->notOk = true;
     this->indexPage = index;
@@ -39,6 +51,7 @@ void Cdata::requestData(int index){
     manager->get(QNetworkRequest(QUrl(this->url)));
 }
 
+//*** When the response is complete, fill the result (json) in an array for futur treatment ***//
 void Cdata::replyFinished(QNetworkReply * qtr){
     QByteArray response_data = qtr->readAll();
     jsonDoc[this->indexPage] = QJsonDocument::fromJson(response_data);
@@ -46,6 +59,7 @@ void Cdata::replyFinished(QNetworkReply * qtr){
     qtr->deleteLater();
 }
 
+//*** grab data from pGrimaud API ***//
 QString Cdata::getJsonData(QString dataName,int index,int index2){
     while(notOk){
         qApp->processEvents();
@@ -65,6 +79,7 @@ QString Cdata::getJsonData(QString dataName,int index,int index2){
 
 }
 
+//*** return Json size (used for ui to showing items) **/
 int Cdata::getJsonSize(int index)
 {
     while(notOk){

@@ -1,10 +1,11 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+/*** This page is for selecting the right transport details.. like the number of the Metro (ex : 1,2,3...), RER (A,B), ...
+***/
 Page {
     id: page
 
-    // The effective value will be restricted by ApplicationWindow.allowedOrientations
     allowedOrientations: Orientation.All
 
     SilicaListView {
